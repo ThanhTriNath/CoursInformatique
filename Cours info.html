@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" href="Ordi.jpg" type="image/jpeg">
+    <title>Cours de Programmation</title>
+    <style>
+        :root {
+            --main-color: #22223b;
+            --accent: #4a4e69;
+            --bg: #f2e9e4;
+            --white: #fff;
+            --menu-width: 220px;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--main-color);
+        }
+        header {
+            background: var(--accent);
+            color: var(--white);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-family: Trebuchet MS;
+            text-align: center;
+        }
+        #menu-toggle {
+            background: var(--main-color);
+            color: var(--white);
+            border: none;
+            padding: 0.6em 1.2em;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: var(--menu-width);
+            height: 100%;
+            background: var(--main-color);
+            color: var(--white);
+            padding-top: 70px;
+            transition: left 0.3s;
+            z-index: 999;
+        }
+        nav.open {
+            left: 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 1.5em 0;
+            text-align: left;
+        }
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 0.6em 1.5em;
+            display: block;
+            transition: background 0.2s;
+        }
+        nav ul li a:hover {
+            background: var(--accent);
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.38);
+            z-index: 998;
+        }
+        .overlay.open {
+            display: block;
+        }
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 0 10px #dedede;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .intro {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .cours-promo {
+            background: #e0bbff;
+            color: #22223b;
+            border-radius: 8px;
+            padding: 1.2rem 1rem;
+            margin-bottom: 2.5rem;
+            font-size: 1.15rem;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 2px 8px #ececec;
+        }
+        .annonce {
+            background: #ffe066;
+            color: #22223b;
+            border-radius: 8px;
+            padding: 1.2rem 1rem;
+            margin-bottom: 2.5rem;
+            font-size: 1.15rem;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 2px 8px #ececec;
+            border: 2px solid #e1b800;
+        }
+        section.lang {
+            margin: 2.5rem 0;
+            background: var(--bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px #ececec;
+            padding: 1.5rem;
+        }
+        section.lang:nth-child(even) {
+            background: #e9ecef;
+        }
+        .lang-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            justify-content: center;
+        }
+        .lang-icon {
+            font-size: 2.2rem;
+            flex-shrink: 0;
+        }
+        @media (max-width: 800px) {
+            main {
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <span class="logo">Cours de Programmation</span>
+        <button id="menu-toggle" aria-label="Afficher le menu">☰ Menu</button>
+    </header>
+    <nav id="side-menu" aria-label="Menu principal">
+        <ul>
+            <li><a href="#python">Python</a></li>
+            <li><a href="#javascript">JavaScript</a></li>
+            <li><a href="#java">Java</a></li>
+            <li><a href="#cpp">C++</a></li>
+            <li><a href="#php">PHP</a></li>
+            <li><a href="#ruby">Ruby</a></li>
+            <li><a href="#csharp">C#</a></li>
+            <li><a href="#go">Go</a></li>
+            <li><a href="#ctus">COntact us</a></li>
+        </ul>
+    </nav>
+    <div class="overlay" id="menu-overlay"></div>
+    <main>
+        <h1>Nous donnons des cours de programmation !</h1>
+        <div class="annonce">
+            📢 <strong>Annonce :</strong> Nous donnons des cours de programmation au tarif de <u>5€ les 1h30</u>.<br>
+            Profitez-en pour progresser rapidement et à petit prix&nbsp;!
+        </div>
+        <div class="cours-promo">
+            Apprenez à programmer avec nos cours sur les principaux langages !<br>
+            Nos formations sont accessibles à tous les niveaux et vous permettent de progresser à votre rythme.
+        </div>
+        <p class="intro">
+            Découvrez nos ressources pour apprendre les principaux langages de programmation.<br>
+            Sélectionnez un langage dans le menu ou explorez nos sections ci-dessous !
+        </p>
+
+        <section class="lang" id="python">
+            <div class="lang-title"><span class="lang-icon" aria-hidden="true">🐍</span><h2>Python</h2></div>
+            <p>
+                Python est un langage polyvalent, populaire pour l'apprentissage, l'IA, la data science et le développement web.<br>
+                <strong>Nous proposons des cours de programmation Python</strong> adaptés à tous les niveaux.
+            </p>
+        </section>
+
+        <section class="lang" id="javascript">
+            <div class="lang-title"><span class="lang-icon" aria-hidden="true">🌐</span><h2>JavaScript</h2></div>
+            <p>
+                JavaScript est le langage incontournable du web, idéal pour rendre vos sites interactifs et dynamiques.<br>
+                <strong>Nous proposons des cours de JavaScript</strong> pour le front-end et le back-end.
+            </p>
+        </section>
+
+        <section class="lang" id="java">
+            <div class="lang-title"><span class="lang-icon" aria-hidden="true">☕</span><h2>Java</h2></div>
+            <p>
+                Java est plébiscité pour les applications d'entreprise, mobiles et embarquées.<br>
+                <strong>Nous vous formons à la programmation Java</strong> de la base à l'expert.
+            </p>
+        </section>
+
+        <section class="lang" id="cpp">
+            <div class="lang-title"><span class="lang-icon" aria-hidden="true">💻</span><h2>C++</h2></div>
+            <p>
+                C++ est utilisé pour les logiciels systèmes, les jeux vidéo et les applications performantes.<br>
+                <strong>Nos cours C++</strong> couvrent la programmation orientée objet et la gestion mémoire.
+            </p>
+        </section>
+
+        <section class="lang" id="php">
+            <div class="lang-title"><span class="lang-icon" aria-hidden="true">🐘</span><h2>PHP</h2></div>
+            <p>
+                PHP est omniprésent dans le développement web côté serveur.<br>
+                <strong>Nous proposons des cours PHP</strong> pour créer des sites dynamiques et professionnels.
+            </p>
+        </section>
+
+        <section class="lang" id="ruby">
+            <div class="lang-title"><span class="lang-icon" aria-hidden="true">💎</span><h2>Ruby</h2></div>
+            <p>
+                Ruby est reconnu pour sa simplicité et son framework Ruby on Rails.<br>
+                <strong>Nos cours Ruby</strong> vous aident à développer rapidement des applications web élégantes.
+            </p>
+        </section>
+
+        <section class="lang" id="csharp">
+            <div class="lang-title"><span class="lang-icon" aria-hidden="true">🎮</span><h2>C#</h2></div>
+            <p>
+                C# est le langage de la plateforme .NET, utilisé pour les applications Windows et les jeux Unity.<br>
+                <strong>Découvrez nos cours de C#</strong> pour tous vos projets logiciels.
+            </p>
+        </section>
+
+        <section class="lang" id="go">
+            <div class="lang-title"><span class="lang-icon" aria-hidden="true">🚀</span><h2>Go</h2></div>
+            <p>
+                Go, développé par Google, est conçu pour l'efficacité et la simplicité des applications modernes.<br>
+                <strong>Nous proposons des cours Go</strong> pour développer des applications robustes et performantes.
+            </p>
+        </section>
+         <section class="lang" id="go">
+            <div class="lang-title"><span class="lang-icon" aria-hidden="true">🚀</span><h2>Pour s'inscrire, c'est par là !</h2></div>
+           <a href="https://thanhtrinath.github.io/ProjetOrionF/" style="text-align: center;">Cliquez sur le lien !</a>
+    </main>
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const sideMenu = document.getElementById('side-menu');
+        const overlay = document.getElementById('menu-overlay');
+
+        function openMenu() {
+            sideMenu.classList.add('open');
+            overlay.classList.add('open');
+        }
+        function closeMenu() {
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('open');
+        }
+        menuToggle.addEventListener('click', openMenu);
+        overlay.addEventListener('click', closeMenu);
+        // Ferme le menu si on clique sur un lien du menu
+        sideMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+        // Accessibilité : touche ESC pour fermer le menu
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closeMenu();
+        });
+    </script>
+</body>
+</html>
