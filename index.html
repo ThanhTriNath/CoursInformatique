@@ -260,7 +260,38 @@
         </section>
          <section class="lang" id="go">
             <div class="lang-title"><span class="lang-icon" aria-hidden="true"></span><h2 id="ctus">Pour s'inscrire, c'est par là !</h2></div>
-           <a href="https://formsubmit.co/el/wuxamo" style="text-align: center;">Cliquez sur le lien !</a>
+           <a href="https://formsubmit.co/el/wuxamo" class="buzzer-button">
+  <span>BUZZ</span>
+</a>
+
+<style>
+.buzzer-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at 30% 30%, #ff4343 80%, #a40000 100%);
+  border-radius: 50%;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25), 0 2px 8px rgba(255,0,0,0.2);
+  text-decoration: none;
+  transition: transform 0.1s, box-shadow 0.1s;
+  border: 4px solid #fff;
+  position: relative;
+  overflow: hidden;
+}
+.buzzer-button span {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px #a40000;
+}
+.buzzer-button:active {
+  transform: scale(0.96);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.25);
+}
+</style>
     </main>
     <script>
         const menuToggle = document.getElementById('menu-toggle');
