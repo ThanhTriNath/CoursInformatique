@@ -3,67 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="icon" href="Ordi.jpg" type="image/jpeg">
+    <link rel="icon" href="Ordi.jpg" type="image/jpeg">
     <title>Cours de Programmation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&family=Fira+Mono&display=swap" rel="stylesheet">
+    <!-- Font Awesome pour l'icône -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         :root {
             --main-color: #22223b;
             --accent: #4a4e69;
+            --primary: #9a8c98;
             --bg: #f2e9e4;
             --white: #fff;
-            --menu-width: 220px;
+            --yellow: #ffe066;
+            --purple-light: #e0bbff;
+            --menu-width: 270px;
+            --radius: 14px;
+            --shadow: 0 4px 20px rgba(34, 34, 59, 0.11), 0 1.5px 8px #dedede;
+            --transition: 0.25s cubic-bezier(.4,2,.3,1);
         }
-        html {
-  scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--bg);
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #f2e9e4 0%, #e0bbff 100%);
             color: var(--main-color);
+            min-height: 100vh;
         }
         header {
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--accent) 70%, var(--primary) 120%);
             color: var(--white);
-            padding: 1rem;
+            padding: 1.2rem 2.2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            box-shadow: var(--shadow);
+            border-bottom-left-radius: var(--radius);
+            border-bottom-right-radius: var(--radius);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+        }
+        .header-icon {
+            font-size: 2.8rem;
+            color: var(--yellow);
+            text-shadow: 0 3px 10px rgba(250,222,90,0.25), 0 3px 10px #4a4e6950;
+            filter: drop-shadow(0 2px 8px #ffe06677);
         }
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            font-family: Trebuchet MS;
+            font-size: 2.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-family: 'Montserrat', Trebuchet MS, Arial, sans-serif;
             text-align: center;
+            text-shadow: 0 3px 10px rgba(74,78,105,0.15);
+            user-select: none;
+            cursor: pointer;
         }
         #menu-toggle {
             background: var(--main-color);
             color: var(--white);
             border: none;
-            padding: 0.6em 1.2em;
-            font-size: 1rem;
-            border-radius: 5px;
+            padding: 0.7em 1.5em;
+            font-size: 1.2rem;
+            font-family: inherit;
+            border-radius: 8px;
             cursor: pointer;
+            transition: background 0.2s, transform 0.11s;
+            box-shadow: 0 2px 8px #4442;
+        }
+        #menu-toggle:hover {
+            background: var(--primary);
+            color: var(--main-color);
+            transform: scale(1.08);
         }
         nav {
             position: fixed;
             top: 0;
-            left: -250px;
+            left: -290px;
             width: var(--menu-width);
-            height: 100%;
-            background: var(--main-color);
+            height: 100vh;
+            background: linear-gradient(135deg, var(--main-color), var(--primary) 95%);
             color: var(--white);
-            padding-top: 70px;
-            transition: left 0.3s;
-            z-index: 999;
+            padding-top: 100px;
+            transition: left var(--transition);
+            z-index: 1300;
+            box-shadow: 6px 0 16px #22223b22;
+            border-top-right-radius: var(--radius);
+            border-bottom-right-radius: var(--radius);
+            overflow-y: auto;
         }
-        nav.open {
-            left: 0;
-        }
+        nav.open { left: 0; }
         nav ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
         nav ul li {
             margin: 1.5em 0;
@@ -72,97 +111,227 @@
         nav ul li a {
             color: var(--white);
             text-decoration: none;
-            font-size: 1.1em;
-            padding: 0.6em 1.5em;
+            font-size: 1.18em;
+            padding: 0.8em 2em 0.8em 1.4em;
             display: block;
-            transition: background 0.2s;
+            border-radius: 8px 18px 18px 8px;
+            transition: background 0.15s, color 0.15s, transform 0.12s;
+            position: relative;
         }
-        nav ul li a:hover {
+        nav ul li a:hover, nav ul li a:focus {
             background: var(--accent);
+            color: var(--yellow);
+            transform: translateX(8px) scale(1.03);
+            box-shadow: 0 2px 12px #f2e9e455;
         }
         .overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.38);
-            z-index: 998;
+            background: rgba(34,34,59,0.32);
+            z-index: 1200;
         }
-        .overlay.open {
-            display: block;
-        }
+        .overlay.open { display: block; }
         main {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 1rem;
+            max-width: 940px;
+            margin: 2.5rem auto;
+            padding: 2.2rem 1.3rem;
             background: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 0 10px #dedede;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            animation: fadeIn 1s cubic-bezier(.4,2,.3,1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: none;}
         }
         h1, h2 {
             text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 2.6rem;
+            margin: 0.5em 0 0.7em;
+            letter-spacing: 1.5px;
+        }
+        h2 {
+            font-size: 2.1rem;
+            margin: 0 0 0.9em 0;
         }
         .intro {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.22rem;
+            margin-bottom: 2.2rem;
             text-align: center;
+            color: #3a3a5a;
+            font-family: 'Montserrat',sans-serif;
+            line-height: 1.7;
+        }
+        .cours-promo, .annonce {
+            padding: 1.3rem 1.2rem;
+            border-radius: var(--radius);
+            font-size: 1.14rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2.6rem;
+            box-shadow: 0 3px 10px #e9e9fa80;
+            position: relative;
+            border-left: 8px solid var(--accent);
+            animation: fadeIn 1.1s cubic-bezier(.4,2,.3,1);
         }
         .cours-promo {
-            background: #e0bbff;
-            color: #22223b;
-            border-radius: 8px;
-            padding: 1.2rem 1rem;
-            margin-bottom: 2.5rem;
-            font-size: 1.15rem;
-            font-weight: bold;
-            text-align: center;
-            box-shadow: 0 2px 8px #ececec;
+            background: linear-gradient(90deg, #e0bbff 60%, #f7e3ff 100%);
+            color: var(--main-color);
         }
         .annonce {
-            background: #ffe066;
+            background: linear-gradient(90deg, var(--yellow) 60%, #fffbe6 100%);
             color: #22223b;
-            border-radius: 8px;
-            padding: 1.2rem 1rem;
-            margin-bottom: 2.5rem;
-            font-size: 1.15rem;
-            font-weight: bold;
-            text-align: center;
-            box-shadow: 0 2px 8px #ececec;
-            border: 2px solid #e1b800;
+            border: 2.5px solid #e1b800;
+            border-left: 8px solid #e1b800;
+            box-shadow: 0 4px 14px #ffe06644;
         }
         section.lang {
-            margin: 2.5rem 0;
+            margin: 2.8rem 0;
             background: var(--bg);
-            border-radius: 8px;
-            box-shadow: 0 2px 8px #ececec;
-            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: 0 2px 8px #ececec80;
+            padding: 1.7rem 1.1rem 1.1rem 1.1rem;
+            transition: box-shadow .17s, transform .17s;
+            border-left: 7px solid var(--primary);
+            animation: fadeIn 1.2s cubic-bezier(.4,2,.3,1);
+        }
+        section.lang:hover {
+            box-shadow: 0 8px 28px #e0bbff44;
+            transform: scale(1.018);
         }
         section.lang:nth-child(even) {
-            background: #e9ecef;
-        }
-        a {
-            text-align: center;
+            background: #f6f4fa;
+            border-left: 7px solid var(--accent);
         }
         .lang-title {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.5rem;
+            gap: 1.1rem;
+            margin-bottom: 0.6rem;
             justify-content: center;
+            font-size: 1.2rem;
         }
         .lang-icon {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             flex-shrink: 0;
+            filter: drop-shadow(0 1px 4px #e0bbff88);
         }
-        @media (max-width: 800px) {
-            main {
-                margin: 1rem;
-            }
+        .lang p {
+            font-family: 'Montserrat',sans-serif;
+            font-size: 1.13rem;
+            text-align: center;
+            color: #45456a;
+            margin: 0.2em 0 0.6em 0;
         }
+        a {
+            text-align: center;
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: underline dotted;
+            transition: color 0.15s;
+        }
+        a:hover {
+            color: #e1b800;
+        }
+
+        /* Buzzer "Inscription" button styles */
+        .buzzer-wrap {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.4em;
+        }
+        .buzzer-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 220px;
+            height: 70px;
+            background: radial-gradient(circle at 35% 25%, #ff4343 80%, #a40000 100%);
+            border-radius: 40px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.16), 0 2px 8px rgba(255,0,0,0.2);
+            text-decoration: none;
+            transition: transform 0.13s, box-shadow 0.18s;
+            border: 5px solid #fff;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .buzzer-button span {
+            color: #fff;
+            font-size: 2.05rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px #a40000;
+            font-family: "Montserrat", Arial, sans-serif;
+            white-space: nowrap;
+        }
+        .buzzer-button:active {
+            transform: scale(0.96);
+            box-shadow: 0 1px 6px rgba(0,0,0,0.25);
+        }
+        .buzzer-button::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 50%; top: 50%;
+            width: 0; height: 0;
+            background: rgba(255,255,255,0.22);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.18s, height 0.18s;
+        }
+        .buzzer-button:active::after {
+            width: 180px; height: 55px;
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            main { margin: 1.1rem; padding: 1.3rem 0.3rem; }
+            header { padding: 1.2rem 0.8rem; }
+        }
+        @media (max-width: 650px) {
+            header { flex-direction: column; gap: 0.7em; }
+            .header-left { justify-content: center; }
+            .logo { font-size: 1.5rem;}
+            nav { width: 88vw; min-width: 175px; }
+            .buzzer-button { width: 95vw; max-width: 300px;}
+        }
+        @media (max-width: 500px) {
+            main { padding: 1rem 0.1rem; }
+            .buzzer-button { width: 95vw; max-width: 240px; height: 56px;}
+            .buzzer-button span { font-size: 1.1rem;}
+        }
+        /* "Retour en haut" button */
+        #topBtn {
+            display:none;
+            position:fixed;
+            bottom:32px;
+            right:32px;
+            z-index:1400;
+            font-size:25px;
+            padding:13px 15px 11px 15px;
+            border:none;
+            border-radius:50%;
+            background:linear-gradient(135deg, var(--accent) 60%, var(--main-color));
+            color:#fff;
+            cursor:pointer;
+            box-shadow: 0 2px 10px #4a4e6988;
+            transition: background 0.14s, transform 0.14s;
+        }
+        #topBtn:hover { background:var(--yellow); color:var(--main-color); transform: scale(1.12);}
     </style>
 </head>
 <body>
     <header>
-        <span class="logo">Cours de Programmation</span>
+        <div class="header-left">
+            <span class="header-icon" aria-hidden="true"><i class="fas fa-laptop-code"></i></span>
+            <span class="logo">Cours de Programmation</span>
+        </div>
         <button id="menu-toggle" aria-label="Afficher le menu">☰ Menu</button>
     </header>
     <nav id="side-menu" aria-label="Menu principal">
@@ -176,14 +345,14 @@
             <li><a href="#ruby">Ruby</a></li>
             <li><a href="#csharp">C#</a></li>
             <li><a href="#go">Go</a></li>
-            <li><a href="#ctus">Contact us</a></li>
+            <li><a href="#ctus">Contact</a></li>
         </ul>
     </nav>
     <div class="overlay" id="menu-overlay"></div>
     <main>
         <h1>Nous donnons des cours de programmation !</h1>
-        <div class="annonce">
-            📢 <strong id="anncs">Annonce :</strong> Nous donnons des cours de programmation au tarif de <u>5€ les 1h30</u>.<br>
+        <div class="annonce" id="anncs">
+            📢 <strong>Annonce :</strong> Nous donnons des cours de programmation au tarif de <u>5€ les 1h30</u>.<br>
             Profitez-en pour progresser rapidement et à petit prix&nbsp;!
         </div>
         <div class="cours-promo">
@@ -192,9 +361,8 @@
         </div>
         <p class="intro">
             Découvrez nos ressources pour apprendre les principaux langages de programmation.<br>
-            Sélectionnez un langage dans le menu ou explorez nos sections ci-dessous !
+            Sélectionnez un langage dans le menu ou explorez nos sections ci-dessous !
         </p>
-
         <section class="lang" id="python">
             <div class="lang-title"><span class="lang-icon" aria-hidden="true">🐍</span><h2>Python</h2></div>
             <p>
@@ -202,7 +370,6 @@
                 <strong>Nous proposons des cours de programmation Python</strong> adaptés à tous les niveaux.
             </p>
         </section>
-
         <section class="lang" id="javascript">
             <div class="lang-title"><span class="lang-icon" aria-hidden="true">🌐</span><h2>JavaScript</h2></div>
             <p>
@@ -210,7 +377,6 @@
                 <strong>Nous proposons des cours de JavaScript</strong> pour le front-end et le back-end.
             </p>
         </section>
-
         <section class="lang" id="java">
             <div class="lang-title"><span class="lang-icon" aria-hidden="true">☕</span><h2>Java</h2></div>
             <p>
@@ -218,7 +384,6 @@
                 <strong>Nous vous formons à la programmation Java</strong> de la base à l'expert.
             </p>
         </section>
-
         <section class="lang" id="cpp">
             <div class="lang-title"><span class="lang-icon" aria-hidden="true">💻</span><h2>C++</h2></div>
             <p>
@@ -226,7 +391,6 @@
                 <strong>Nos cours C++</strong> couvrent la programmation orientée objet et la gestion mémoire.
             </p>
         </section>
-
         <section class="lang" id="php">
             <div class="lang-title"><span class="lang-icon" aria-hidden="true">🐘</span><h2>PHP</h2></div>
             <p>
@@ -234,7 +398,6 @@
                 <strong>Nous proposons des cours PHP</strong> pour créer des sites dynamiques et professionnels.
             </p>
         </section>
-
         <section class="lang" id="ruby">
             <div class="lang-title"><span class="lang-icon" aria-hidden="true">💎</span><h2>Ruby</h2></div>
             <p>
@@ -242,7 +405,6 @@
                 <strong>Nos cours Ruby</strong> vous aident à développer rapidement des applications web élégantes.
             </p>
         </section>
-
         <section class="lang" id="csharp">
             <div class="lang-title"><span class="lang-icon" aria-hidden="true">🎮</span><h2>C#</h2></div>
             <p>
@@ -250,7 +412,6 @@
                 <strong>Découvrez nos cours de C#</strong> pour tous vos projets logiciels.
             </p>
         </section>
-
         <section class="lang" id="go">
             <div class="lang-title"><span class="lang-icon" aria-hidden="true">🚀</span><h2>Go</h2></div>
             <p>
@@ -258,55 +419,31 @@
                 <strong>Nous proposons des cours Go</strong> pour développer des applications robustes et performantes.
             </p>
         </section>
-         <section class="lang" id="go">
-            <div class="lang-title" style="text-align: center;"><span class="lang-icon" aria-hidden="true"></span><h2 id="ctus">Pour s'inscrire, c'est par là !</h2></div>
-            <a href="https://forms.office.com/r/7F1mNKGX6r" class="buzzer-button">
-  <span>Click on</span>
-</a>
-
-<style>
-.buzzer-button {
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
-  justify-content: center;
-  width: 120px;
-  height: 120px;
-  background: radial-gradient(circle at 30% 30%, #ff4343 80%, #a40000 100%);
-  border-radius: 50%;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.25), 0 2px 8px rgba(255,0,0,0.2);
-  text-decoration: none;
-  transition: transform 0.1s, box-shadow 0.1s;
-  border: 4px solid #fff;
-  position: relative;
-  overflow: hidden;
-}
-.buzzer-button span {
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  letter-spacing: 2px;
-  text-shadow: 0 2px 8px #a40000;
-}
-.buzzer-button:active {
-  transform: scale(0.96);
-  box-shadow: 0 1px 6px rgba(0,0,0,0.25);
-}
-</style>
+        <section class="lang" id="ctus">
+            <div class="lang-title" style="text-align: center;"><span class="lang-icon" aria-hidden="true">✉️</span><h2>Pour s'inscrire, c'est par là&nbsp;!</h2></div>
+            <div class="buzzer-wrap">
+                <a href="https://forms.office.com/r/7F1mNKGX6r" class="buzzer-button" target="_blank" title="Cliquez pour vous inscrire">
+                    <span>Inscription</span>
+                </a>
+            </div>
+        </section>
     </main>
+    <button id="topBtn" title="Retour en haut">&#8679;</button>
     <script>
         const menuToggle = document.getElementById('menu-toggle');
         const sideMenu = document.getElementById('side-menu');
         const overlay = document.getElementById('menu-overlay');
-
+        // Menu burger
         function openMenu() {
             sideMenu.classList.add('open');
             overlay.classList.add('open');
+            // Empêche le body de défiler quand le menu est ouvert
+            document.body.style.overflow = "hidden";
         }
         function closeMenu() {
             sideMenu.classList.remove('open');
             overlay.classList.remove('open');
+            document.body.style.overflow = "";
         }
         menuToggle.addEventListener('click', openMenu);
         overlay.addEventListener('click', closeMenu);
@@ -318,26 +455,19 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === "Escape") closeMenu();
         });
-    </script>
-    <!-- Bouton retour en haut -->
-<button id="topBtn" title="Retour en haut" style="display:none;position:fixed;bottom:40px;right:40px;z-index:99;font-size:24px;padding:10px 15px;border:none;border-radius:50%;background:#222;color:#fff;cursor:pointer;">
-    &#8679;
-    <script>
-  // Afficher le bouton quand on descend
-  window.onscroll = function() {
-    const btn = document.getElementById("topBtn");
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-      btn.style.display = "block";
-    } else {
-      btn.style.display = "none";
-    }
-  };
 
-  // Remonter en haut quand on clique
-  document.getElementById("topBtn").onclick = function() {
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  };
-</script>
-</button>
+        // Bouton retour en haut
+        const topBtn = document.getElementById("topBtn");
+        window.onscroll = function() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                topBtn.style.display = "block";
+            } else {
+                topBtn.style.display = "none";
+            }
+        };
+        topBtn.onclick = function() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        };
+    </script>
 </body>
 </html>
